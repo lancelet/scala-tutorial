@@ -68,7 +68,7 @@ object AggregatorTutorial extends App {
      * @tparam NewIn new input type
      * @return new Aggregator
      */
-    def withFilter[NewIn <: In](p: NewIn => Boolean): Aggregator[NewIn,Out] = ??? // TODO: define
+    def withFilter[NewIn <: In](p: NewIn => Boolean): Aggregator[In,Out] = ??? // TODO: define
 
     /**
      * Runs the Aggregator on a `TraversableOnce` to produce a result.
