@@ -73,9 +73,9 @@ Filtering:
     a.run(List(5, 2, 3)) must_== 10
   }
 
-  def count = forAll { l: List[Int]    => Count.run(l) === l.length.toLong }
-  def min   = forAll { l: List[Double] => Min.run(l)   === l.min           }
-  def max   = forAll { l: List[Double] => Max.run(l)   === l.max           }
+  def count = forAll { l: List[Int]    => (l.length > 0) ==> (Count.run(l) === l.length.toLong) }
+  def min   = forAll { l: List[Double] => (l.length > 0) ==> (Min.run(l)   === l.min          ) }
+  def max   = forAll { l: List[Double] => (l.length > 0) ==> (Max.run(l)   === l.max          ) }
 
   def compose2 = forAll { l: List[Double] =>
     Aggregator.compose(Min, Max).run(l) === (l.min, l.max)
