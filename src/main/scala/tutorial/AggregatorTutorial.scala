@@ -1,6 +1,6 @@
 package tutorial
 
-import scalaz._, Scalaz._  // uses scalaz 7.0.6, scala 2.11.0
+import scalaz._, Scalaz._
  
 object AggregatorTutorial extends App {
  
