@@ -102,9 +102,9 @@ object AggregatorTutorial extends App {
 
     // Creates an Aggregator from its three basic operations
     def create[In,T,Out](
-      prepare: In => T,
-      present: T  => Out,
-      monoid:  Monoid[T]
+      prepareF: In => T,
+      presentF: T  => Out,
+      monoidM:  Monoid[T]
     ): Aggregator[In,Out] = ???  // TODO: define
 
     // Creates an Aggregator from a Scalaz Monoid
