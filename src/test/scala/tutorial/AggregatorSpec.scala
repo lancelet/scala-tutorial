@@ -77,18 +77,18 @@ Filtering:
   def min   = forAll { l: List[Double] => (l.length > 0) ==> (Min.run(l)   === l.min          ) }
   def max   = forAll { l: List[Double] => (l.length > 0) ==> (Max.run(l)   === l.max          ) }
 
-  def compose2 = forAll { l: List[Double] =>
-    Aggregator.compose(Min, Max).run(l) === (l.min, l.max)
+  def compose2 = forAll { l: List[Double] => (l.length > 0) ==>
+    (Aggregator.compose(Min, Max).run(l) === (l.min, l.max))
   }
-  def compose3 = forAll { l: List[Double] =>
-    Aggregator.compose(Count, Min, Max).run(l) === (l.length.toLong, l.min, l.max)
+  def compose3 = forAll { l: List[Double] => (l.length > 0) ==>
+    (Aggregator.compose(Count, Min, Max).run(l) === (l.length.toLong, l.min, l.max))
   }
 
-  def countPositive = forAll { l: List[Int] =>
-    CountPositive.run(l) === l.filter(_ > 0).length
+  def countPositive = forAll { l: List[Int] => (l.filter(_ > 0).length > 0) ==>
+    (CountPositive.run(l) === l.filter(_ > 0).length)
   }
-  def countNegative = forAll { l: List[Int] =>
-    CountNegative.run(l) === l.filter(_ < 0).length
+  def countNegative = forAll { l: List[Int] => (l.filter(_ < 0).length > 0) ==>
+    (CountNegative.run(l) === l.filter(_ < 0).length)
   }
 
   // Special stateful Aggregator only used for testing
