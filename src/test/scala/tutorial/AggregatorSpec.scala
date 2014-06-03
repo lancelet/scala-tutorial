@@ -13,6 +13,7 @@ Aggregator
 ==========
 
 Operations:
+  run $run
   composePrepare $composePrepare
   andThenPresent $andThenPresent
   withFilter $withFilter
@@ -31,6 +32,11 @@ Filtering:
   count negative $countNegative
 
 """
+
+  def run = {
+    val a = new TestAggregator
+    a.run(List(1,2,3)) must_== 6
+  }
 
   def composePrepare = {
     val a = new TestAggregator

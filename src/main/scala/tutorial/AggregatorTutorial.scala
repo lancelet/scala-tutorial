@@ -41,6 +41,21 @@ object AggregatorTutorial extends App {
     protected def monoid: Monoid[T]
 
     /**
+     * Runs the Aggregator on a `TraversableOnce` to produce a result.
+     *
+     * Hint: see the documentation for `TraversableOnce.aggregate`:
+     * [[http://www.scala-lang.org/api/current/#scala.collection.TraversableOnce]]
+     *
+     * @param t `TraversableOnce` on which to run the aggregator
+     * @return result of the aggregation
+     */
+    def run(t: TraversableOnce[In]): Out = {
+      val seqOp:  (T,In) => T = ???  // TODO: define
+      val combOp: (T,T)  => T = ???  // TODO: define
+      present( t.aggregate(monoid.zero)(seqOp, combOp) )
+    }
+
+    /**
      * Composes a new `prepare` function before the current `prepare`.
      * @param f `prepare` function to compose
      * @tparam NewIn new input type
@@ -69,17 +84,6 @@ object AggregatorTutorial extends App {
      * @return new Aggregator
      */
     def withFilter[NewIn <: In](p: NewIn => Boolean): Aggregator[In,Out] = ??? // TODO: define
-
-    /**
-     * Runs the Aggregator on a `TraversableOnce` to produce a result.
-     * @param t `TraversableOnce` on which to run the aggregator
-     * @return result of the aggregation
-     */
-    def run(t: TraversableOnce[In]): Out = {
-      val seqOp:  (T,In) => T = ???  // TODO: define
-      val combOp: (T,T)  => T = ???  // TODO: define
-      present( t.aggregate(monoid.zero)(seqOp, combOp) )
-    }
 
   }
 
