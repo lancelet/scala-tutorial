@@ -59,7 +59,7 @@ object AggregatorTutorial extends App {
      * Composes a new `prepare` function before the current `prepare`.
      *
      * Hint: If you define the create() method in the Aggregator object first, then this method
-     *       can be implemented more simply.
+     *       can be implemented more succinctly.
      *
      * @param f `prepare` function to compose
      * @tparam NewIn new input type
@@ -71,7 +71,7 @@ object AggregatorTutorial extends App {
      * Composes a new `present` function after the current `present`.
      *
      * Hint: If you define the create() method in the Aggregator object first, then this method
-     *       can be implemented more simply.
+     *       can be implemented more succinctly.
      *
      * @param f `present` function to compose
      * @tparam NewOut new output type
@@ -88,7 +88,7 @@ object AggregatorTutorial extends App {
      *   append(e, zero) == append(aero, e) == e
      *
      * Hint: If you define the create() method in the Aggregator object first, then this method
-     *       can be implemented more simply.
+     *       can be implemented more succinctly.
      *
      * @param p predicate for the filter
      * @tparam NewIn new input type
