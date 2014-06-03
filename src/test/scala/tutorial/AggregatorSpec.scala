@@ -18,6 +18,10 @@ Operations:
   andThenPresent $andThenPresent
   withFilter $withFilter
 
+Creation:
+  create $create
+  fromMonoid $fromMonoid
+
 Individual aggregators:
   count aggregator $count
   min aggregator $min
@@ -57,6 +61,16 @@ Filtering:
     val b = a.withFilter[Double]{ d => d > 0 }
     b.run(List(-10.0, 42.0))
     a.lastPrepared must_== 42.0
+  }
+
+  def create = {
+    val a = Aggregator.create[Int,Int,Int] (identity, identity, Monoid.instance[Int](_ + _, 0))
+    a.run(List(1, 2, 3)) must_== 6
+  }
+
+  def fromMonoid = {
+    val a = Aggregator.fromMonoid(Monoid.instance[Int](_ + _, 0))
+    a.run(List(5, 2, 3)) must_== 10
   }
 
   def count = forAll { l: List[Int]    => Count.run(l) === l.length.toLong }

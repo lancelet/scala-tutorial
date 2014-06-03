@@ -57,6 +57,10 @@ object AggregatorTutorial extends App {
 
     /**
      * Composes a new `prepare` function before the current `prepare`.
+     *
+     * Hint: If you define the create() method in the Aggregator object first, then this method
+     *       can be implemented more simply.
+     *
      * @param f `prepare` function to compose
      * @tparam NewIn new input type
      * @return new Aggregator
@@ -65,6 +69,10 @@ object AggregatorTutorial extends App {
 
     /**
      * Composes a new `present` function after the current `present`.
+     *
+     * Hint: If you define the create() method in the Aggregator object first, then this method
+     *       can be implemented more simply.
+     *
      * @param f `present` function to compose
      * @tparam NewOut new output type
      * @return new Aggregator
@@ -79,6 +87,9 @@ object AggregatorTutorial extends App {
      * Hint: The identity element (zero) of a Monoid should satisfy:
      *   append(e, zero) == append(aero, e) == e
      *
+     * Hint: If you define the create() method in the Aggregator object first, then this method
+     *       can be implemented more simply.
+     *
      * @param p predicate for the filter
      * @tparam NewIn new input type
      * @return new Aggregator
@@ -88,6 +99,13 @@ object AggregatorTutorial extends App {
   }
 
   object Aggregator {
+
+    // Creates an Aggregator from its three basic operations
+    def create[In,T,Out](
+      prepare: In => T,
+      present: T  => Out,
+      monoid:  Monoid[T]
+    ): Aggregator[In,Out] = ???  // TODO: define
 
     // Creates an Aggregator from a Scalaz Monoid
     def fromMonoid[Z](m: Monoid[Z]): Aggregator[Z,Z] = ???  // TODO: define
