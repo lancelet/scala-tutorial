@@ -90,11 +90,15 @@ object AggregatorTutorial extends App {
      * Hint: If you define the create() method in the Aggregator object first, then this method
      *       can be implemented more succinctly.
      *
+     * Question: Why is `NewIn` required for the type signature?  What happens if we try to use
+     *           the following type signature instead?
+     *             def withFilter(p: In => Boolean): Aggregator[In,Out] = ???
+     *
      * @param p predicate for the filter
      * @tparam NewIn new input type
      * @return new Aggregator
      */
-    def withFilter[NewIn <: In](p: NewIn => Boolean): Aggregator[In,Out] = ??? // TODO: define
+    def withFilter[NewIn <: In](p: NewIn => Boolean): Aggregator[NewIn,Out] = ??? // TODO: define
 
   }
 
