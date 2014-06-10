@@ -52,15 +52,17 @@ Filtering:
   def andThenPresent = {
     val a = new TestAggregator
     val b = a.andThenPresent[Int]{ l => l.toInt }
-    b.run(List(42.0))
+    val out = b.run(List(42.0))
     a.lastPresented must_== 42.0
+    out must_== 42
   }
 
   def withFilter = {
     val a = new TestAggregator
     val b = a.withFilter[Double]{ d => d > 0 }
-    b.run(List(-10.0, 42.0))
+    val out = b.run(List(-10.0, 42.0))
     a.lastPrepared must_== 42.0
+    out must_== 42.0
   }
 
   def create = {
